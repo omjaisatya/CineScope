@@ -12,34 +12,45 @@ export const getTrendingMovies = async () => {
   }
 };
 
-export const getMoviesDetails = async () => {
+export const getMoviesDetails = async (movieId) => {
   try {
-    const response = await api.get("/movie/movie_id");
-    console.log(response);
+    const response = await api.get(`/movie/${movieId}`);
+    console.log("fetching moviesdetails", response.data);
 
-    const data = response.data.results;
+    const data = response.data;
     return data;
   } catch (error) {
     console.log("Error fetching movies details", error);
-    return [];
+    return null;
+  }
+};
+
+export const getMovieVideo = async (movieId) => {
+  try {
+    const response = await api.get(`/movie/${movieId}/videos`);
+    console.log(response);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.log("error while fetching video", error);
   }
 };
 
 export const getMoviesDiscover = async () => {
   try {
     const response = await api.get("/discover/movie");
-    console.log("Discover movies", response);
 
     const data = response.data.results;
+    console.log("Discover movies", data);
     return data;
   } catch (error) {
     console.log("Error fetching discover movies", error);
   }
 };
 
-export const getMoviesRecommendations = async () => {
+export const getMoviesRecommendations = async (movieId) => {
   try {
-    const response = await api.get("");
+    const response = await api.get(`/movie/${movieId}/recommendations`);
     console.log(response);
     const data = response.data.results;
     return data;
@@ -53,7 +64,7 @@ export const getTopRatedMovies = async () => {
   try {
     const response = await api.get("/movie/top_rated");
     const data = response.data.results;
-    console.log(data);
+    console.log("Api top rated movies", data);
     return data;
   } catch (error) {
     console.log("Error fetching top rated moives", error);

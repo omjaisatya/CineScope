@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const MovieCard = ({ movie }) => {
   const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
@@ -26,15 +28,20 @@ const MovieCard = ({ movie }) => {
           <h3 className="text-lg font-bold text-white line-clamp-1">
             {movie.title}
           </h3>
+
+          <Link
+            to={`/movie/${movie.id}`}
+            className="mt-3 inline-block w-full text-center rounded-lg bg-cyan-600 py-2 text-sm font-semibold text-white transition-colors hover:bg-cyan-500"
+          >
+            View Details
+          </Link>
+
           <div className="mt-1 flex items-center justify-between text-xs text-gray-300">
             <span>{new Date(movie.release_date).getFullYear()}</span>
             <span className="rounded border border-gray-500 px-1 uppercase">
               {movie.original_language}
             </span>
           </div>
-          <button className="mt-3 w-full rounded-lg bg-cyan-600 py-2 text-sm font-semibold text-white transition-colors hover:bg-cyan-500">
-            View Details
-          </button>
         </div>
       </div>
 
