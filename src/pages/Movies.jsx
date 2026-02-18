@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import { getTrendingMovies } from "../api/movieService";
+import Loading from "../components/Loading";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -8,6 +9,7 @@ function Movies() {
 
   useEffect(() => {
     const fetchMovies = async () => {
+      setLoading(true);
       const data = await getTrendingMovies();
       setMovies(data);
       setLoading(false);
@@ -15,7 +17,7 @@ function Movies() {
     fetchMovies();
   }, []);
 
-  if (loading) return <div>Loading movies...</div>;
+  if (loading) return <Loading message="Loading..." />;
 
   return (
     <div className="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">

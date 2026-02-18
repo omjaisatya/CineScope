@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import Loading from "./Loading";
 
 const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
   const backdropBaseUrl = "https://image.tmdb.org/t/p/original";
@@ -47,11 +48,7 @@ const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
             </div>
           </>
         ) : (
-          <div className="flex h-full items-center justify-center bg-slate-900">
-            <div className="text-cyan-500 animate-pulse">
-              Loading Featured Movie...
-            </div>
-          </div>
+          <Loading message="Loading Featured Movies..." />
         )}
       </section>
 
@@ -59,34 +56,46 @@ const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
       <main className="space-y-12 px-6 py-12 md:px-16">
         {/* Trending section */}
         <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold tracking-tight border-l-4 border-cyan-500 pl-4">
-              Trending Now
-            </h2>
-            <Link
-              to="/trending"
-              className="text-sm text-cyan-400 hover:underline"
-            >
-              View All
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-            {trendingMovies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
+          {trendingMovies ? (
+            <>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold tracking-tight border-l-4 border-cyan-500 pl-4">
+                  Trending Now
+                </h2>
+                <Link
+                  to="/trending"
+                  className="text-sm text-cyan-400 hover:underline"
+                >
+                  View All
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                {trendingMovies.map((movie) => (
+                  <MovieCard key={movie.id} movie={movie} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <Loading message="Loading trending Movies..." />
+          )}
         </section>
 
         {/* Top rated section */}
         <section>
-          <h2 className="mb-6 text-2xl font-bold tracking-tight border-l-4 border-cyan-500 pl-4">
-            Top Rated of All Time
-          </h2>
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-            {topRatedMovies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
+          {topRatedMovies ? (
+            <>
+              <h2 className="mb-6 text-2xl font-bold tracking-tight border-l-4 border-cyan-500 pl-4">
+                Top Rated of All Time
+              </h2>
+              <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                {topRatedMovies.map((movie) => (
+                  <MovieCard key={movie.id} movie={movie} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <Loading message="Loading Movies..." />
+          )}
         </section>
       </main>
     </div>

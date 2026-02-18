@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getMoviesDetails } from "../api/movieService";
+import Loading from "./Loading";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -23,13 +24,7 @@ function MovieDetails() {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-[#0f172a] text-cyan-400">
-        <h2 className="text-2xl font-bold animate-pulse">
-          Loading Movie Details...
-        </h2>
-      </div>
-    );
+    return <Loading message="Loading movie details" />;
   }
 
   if (!movie) {
