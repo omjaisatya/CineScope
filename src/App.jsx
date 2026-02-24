@@ -1,19 +1,24 @@
 import "./App.css";
-import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Movies from "./pages/Movies";
-import MovieDetails from "./components/MovieDetails";
+import Navbar from "./components/Navbar";
+
+const Home = lazy(() => import("./pages/Home"));
+const Movies = lazy(() => import("./pages/Movies"));
+const MovieDetails = lazy(() => import("./components/MovieDetails"));
+const Loading = lazy(() => import("./components/Loading"));
 
 function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movie/:id" element={<MovieDetails />} />
-      </Routes>
+      <Suspense fallback={<Loading message="Loading Page..." />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
