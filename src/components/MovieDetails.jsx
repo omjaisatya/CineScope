@@ -7,15 +7,18 @@ function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchDetails = async () => {
-      setLoading(true);
       try {
+        setLoading(true);
+        setError(null);
         const data = await getMoviesDetails(id);
         setMovie(data);
       } catch (error) {
-        console.log("failed to load movie details", error);
+        console.error("failed to load movie details", error);
+        setError("Failed to load Movie Details. Please try again");
       } finally {
         setLoading(false);
       }
@@ -26,6 +29,8 @@ function MovieDetails() {
   if (loading) {
     return <Loading message="Loading movie details" />;
   }
+
+  if (error) return <div className="p-4 text-red-500">{error}</div>;
 
   if (!movie) {
     return <div className="text-white">Movie not found</div>;

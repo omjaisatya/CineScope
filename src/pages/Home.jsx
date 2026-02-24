@@ -12,43 +12,38 @@ function Home() {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [featuredMovie, setFeaturedMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTopRatesMovies = async () => {
-      setLoading(true);
-      const data = await getTopRatedMovies();
-      console.log("top rated", data);
+    const fetchAllData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-      setTopRatedMovies(data);
-      setLoading(false);
-    };
-    fetchTopRatesMovies();
-  }, []);
+        const topRated = await getTopRatedMovies();
+        const trending = await getTrendingMovies();
+        const movieDiscover = await getMoviesDiscover();
 
-  useEffect(() => {
-    const fetchTrendingMovies = async () => {
-      setLoading(true);
-      const data = await getTrendingMovies();
-      setTrendingMovies(data);
-      setLoading(false);
-    };
-    fetchTrendingMovies();
-  }, []);
+        setTopRatedMovies(topRated || []);
+        setTrendingMovies(trending || []);
 
-  useEffect(() => {
-    const fetchFeaturedMovie = async () => {
-      setLoading(true);
-      const movies = await getMoviesDiscover();
-      if (movies && movies.length > 0) {
-        const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-        setFeaturedMovie(randomMovie);
+        if (movieDiscover && movieDiscover.length > 0) {
+          const randomMovie =
+            movieDiscover[Math.floor(Math.random() * movieDiscover.length)];
+          setFeaturedMovie(randomMovie);
+        }
+      } catch (error) {
+        console.error("Home fetch error:", error);
+        setError("Failed to load movies. Please try again");
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
-    fetchFeaturedMovie();
+    fetchAllData();
   }, []);
 
-  if (loading) return <Loading message="Loading data..." />;
+  if (loading) return <Loading message="Loading..." />;
+  if (error) return <div className="p-4 text-red-500">{error}</div>;
 
   return (
     <>
