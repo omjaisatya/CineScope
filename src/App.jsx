@@ -1,7 +1,8 @@
-import "./App.css";
+// import "./App.css";   no usage in component because tailwind configured in this project. if custom css needed then i add app.css
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import NotFound from "./pages/NotFound";
 
 const Home = lazy(() => import("./pages/Home"));
 const Movies = lazy(() => import("./pages/Movies"));
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </>
