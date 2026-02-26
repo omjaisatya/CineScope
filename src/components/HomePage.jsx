@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 import Loading from "./Loading";
 
 const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
-  // const backdropBaseUrl = "https://image.tmdb.org/t/p/original"; //comment for porformance they load more times
+  // const backdropBaseUrl = "https://image.tmdb.org/t/p/original"; //comment this for porformance they load more times
   const backdropBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
   return (
