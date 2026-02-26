@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
-  const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  // const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const posterUrl = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
 
   return (
     <div className="group relative w-full overflow-hidden rounded-xl bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20">
       <div className="aspect-2/3 w-full overflow-hidden">
         <img
           // src={posterUrl}
+          // testing portformance
+          fetchPriority="high"
+          loading="eager"
+          // end code
           src={
             movie.poster_path
               ? posterUrl
@@ -31,7 +36,7 @@ const MovieCard = ({ movie }) => {
 
           <Link
             to={`/movie/${movie.id}`}
-            className="mt-3 inline-block w-full text-center rounded-lg bg-cyan-600 py-2 text-sm font-semibold text-white transition-colors hover:bg-cyan-500"
+            className="mt-3 inline-block w-full text-center rounded-lg bg-cyan-900 py-2 text-sm font-semibold text-white transition-colors hover:bg-cyan-700"
           >
             View Details
           </Link>

@@ -17,8 +17,8 @@ function Movies() {
         const data = await getTrendingMovies();
         setMovies(data || []);
       } catch (error) {
-        console.error("Movie fetch error:", error);
-        setError("failed to load movies");
+        // console.error("Movie fetch error:", error);
+        setError("failed to load movies", error.message);
       } finally {
         setLoading(false);
       }

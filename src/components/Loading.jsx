@@ -11,9 +11,9 @@ const Loading = ({
   return (
     <div className={containerClasses}>
       <div className="flex flex-col items-center gap-4">
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-solid border-cyan-500 border-t-transparent"></div>
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-solid border-cyan-700 border-t-transparent"></div>
 
-        <p className="text-cyan-400 animate-pulse text-lg font-medium">
+        <p className="text-cyan-700 animate-pulse text-lg font-medium">
           {message}
         </p>
       </div>

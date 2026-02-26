@@ -17,8 +17,11 @@ function MovieDetails() {
         const data = await getMoviesDetails(id);
         setMovie(data);
       } catch (error) {
-        console.error("failed to load movie details", error);
-        setError("Failed to load Movie Details. Please try again");
+        // console.error("failed to load movie details", error);
+        setError(
+          "Failed to load Movie Details. Please try again",
+          error.message,
+        );
       } finally {
         setLoading(false);
       }
@@ -40,7 +43,12 @@ function MovieDetails() {
     <div className="min-h-screen bg-[#0f172a] text-white p-6 md:p-16">
       <div className="flex flex-col md:flex-row gap-10">
         <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          // testing porformance
+          rel="preload"
+          as="image"
+          // end
+          // src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
           className="w-full md:w-80 rounded-2xl shadow-2xl"
           alt={movie.title}
         />

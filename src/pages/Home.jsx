@@ -20,9 +20,11 @@ function Home() {
         setLoading(true);
         setError(null);
 
-        const topRated = await getTopRatedMovies();
-        const trending = await getTrendingMovies();
-        const movieDiscover = await getMoviesDiscover();
+        const [topRated, trending, movieDiscover] = await Promise.all([
+          getTopRatedMovies(),
+          getTrendingMovies(),
+          getMoviesDiscover(),
+        ]);
 
         setTopRatedMovies(topRated || []);
         setTrendingMovies(trending || []);
@@ -33,8 +35,8 @@ function Home() {
           setFeaturedMovie(randomMovie);
         }
       } catch (error) {
-        console.error("Home fetch error:", error);
-        setError("Failed to load movies. Please try again");
+        // console.error("Home fetch error:", error);
+        setError("Failed to load movies. Please try again", error.message);
       } finally {
         setLoading(false);
       }

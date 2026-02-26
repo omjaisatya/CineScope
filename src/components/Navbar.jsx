@@ -12,14 +12,21 @@ const Navbar = () => {
                 to="/"
                 className="text-2xl font-bold tracking-tighter text-cyan-400 uppercase"
                 end
+                rel="preload"
               >
                 Cine<span className="text-white">Scope</span>
               </NavLink>
 
               <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-                <NavLink to="/movies">Movies</NavLink>
-                <NavLink to="/shows">TV Shows</NavLink>
-                <NavLink to="/people">People</NavLink>
+                <NavLink to="/movies" rel="preload">
+                  Movies
+                </NavLink>
+                <NavLink to="/shows" rel="preload">
+                  TV Shows
+                </NavLink>
+                <NavLink to="/people" rel="preload">
+                  People
+                </NavLink>
               </div>
             </div>
 
@@ -64,13 +71,21 @@ const Navbar = () => {
               className="w-full bg-slate-900 border border-slate-800 rounded-lg py-2 px-4 text-sm"
             />
           </div>
-          <NavLink to="/movies" className=" py-2 border-b border-slate-900">
+          <NavLink
+            to="/movies"
+            rel="preload"
+            className=" py-2 border-b border-slate-900"
+          >
             Movies
           </NavLink>
-          <NavLink to="/shows" className=" py-2 border-b border-slate-900">
+          <NavLink
+            to="/shows"
+            rel="preload"
+            className=" py-2 border-b border-slate-900"
+          >
             TV Shows
           </NavLink>
-          <NavLink to="/people" className=" py-2">
+          <NavLink to="/people" rel="preload" className=" py-2">
             People
           </NavLink>
         </div>

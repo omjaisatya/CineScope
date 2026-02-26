@@ -3,7 +3,8 @@ import MovieCard from "./MovieCard";
 import Loading from "./Loading";
 
 const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
-  const backdropBaseUrl = "https://image.tmdb.org/t/p/original";
+  // const backdropBaseUrl = "https://image.tmdb.org/t/p/original"; //comment for porformance they load more times
+  const backdropBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
   return (
     <div className="min-h-screen bg-[#0f172a] text-white">
@@ -13,6 +14,10 @@ const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
           <>
             <div className="absolute inset-0">
               <img
+                // testing porformance
+                fetchPriority="high"
+                loading="eager"
+                // end
                 src={`${backdropBaseUrl}${featuredMovie.backdrop_path}`}
                 alt={featuredMovie.title}
                 className="h-full w-full object-cover"
@@ -23,22 +28,30 @@ const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
             </div>
 
             <div className="relative z-10 flex h-full flex-col justify-center px-6 md:px-16 lg:w-1/2">
-              <h1 className="text-4xl font-black md:text-6xl text-cyan-400 drop-shadow-lg">
+              <h1 className="text-4xl font-black md:text-6xl text-cyan-900 drop-shadow-lg">
                 {featuredMovie.title}
               </h1>
-              <p className="mt-4 line-clamp-3 text-lg text-slate-300 drop-shadow-md">
+              <p className="mt-4 line-clamp-3 text-lg text-white drop-shadow-md">
                 {featuredMovie.overview}
               </p>
 
               <div className="mt-8 flex gap-4">
                 <Link
+                  // testing porformance
+                  rel="preload"
+                  as="image"
+                  // end
                   to={`/movie/${featuredMovie.id}/videos`}
-                  className="rounded-full bg-cyan-500 px-8 py-3 font-bold text-white transition hover:bg-cyan-400 shadow-lg shadow-cyan-500/30"
+                  className="rounded-full bg-cyan-900 px-8 py-3 font-bold text-white transition hover:bg-cyan-700 shadow-lg shadow-cyan-700/30"
                 >
                   Watch Trailer
                 </Link>
 
                 <Link
+                  // testing porformance
+                  rel="preload"
+                  as="image"
+                  // end
                   to={`/movie/${featuredMovie.id}`}
                   className="rounded-full bg-slate-800/80 px-8 py-3 font-bold text-white backdrop-blur-md transition hover:bg-slate-700 border border-slate-600"
                 >
@@ -63,6 +76,10 @@ const HomePage = ({ featuredMovie, trendingMovies, topRatedMovies }) => {
                   Trending Now
                 </h2>
                 <Link
+                  // testing porformance
+                  rel="preload"
+                  as="image"
+                  // end
                   to="/trending"
                   className="text-sm text-cyan-400 hover:underline"
                 >
