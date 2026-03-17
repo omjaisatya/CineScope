@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
+import { getImage } from "../utils/getImage";
 
 const MovieCard = ({ movie }) => {
-  // const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-  const posterUrl = `https://image.tmdb.org/t/p/w342${movie.poster_path}`;
+  const posterUrl = getImage(movie.poster_path, "w342");
 
   return (
     <div className="group relative w-full overflow-hidden rounded-xl bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20">
@@ -13,11 +13,7 @@ const MovieCard = ({ movie }) => {
           fetchPriority="high"
           loading="eager"
           // end code
-          src={
-            movie.poster_path
-              ? posterUrl
-              : "https://via.placeholder.com/500x750?text=No+Poster"
-          }
+          src={posterUrl}
           alt={movie.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getMoviesDetails } from "../api/movieService";
 import Loading from "./Loading";
+import { getImage } from "../utils/getImage";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -47,8 +48,8 @@ function MovieDetails() {
           rel="preload"
           as="image"
           // end
-          // src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+          // src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+          src={getImage(movie.poster_path, "w342")}
           className="w-full md:w-80 rounded-2xl shadow-2xl"
           alt={movie.title}
         />
