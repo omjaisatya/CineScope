@@ -56,7 +56,7 @@ function Footer() {
             rel="noopener noreferrer"
             className="inline-block"
           >
-            <img src="" alt="TMDB Logo" className="w-20" />
+            <img src="null" alt="TMDB Logo" className="w-20" />
           </a>
         </div>
       </div>

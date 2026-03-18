@@ -34,9 +34,9 @@ function Home() {
             movieDiscover[Math.floor(Math.random() * movieDiscover.length)];
           setFeaturedMovie(randomMovie);
         }
-      } catch (error) {
-        // console.error("Home fetch error:", error);
-        setError("Failed to load movies. Please try again", error.message);
+      } catch (err) {
+        console.error("Home fetch error:", err);
+        setError("Failed to load movies. Please try again");
       } finally {
         setLoading(false);
       }
@@ -45,7 +45,19 @@ function Home() {
   }, []);
 
   if (loading) return <Loading message="Loading..." />;
-  if (error) return <div className="p-4 text-red-500">{error}</div>;
+
+  if (error)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen gap-3">
+        <p className="text-red-400">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="px-4 py-2 text-sm rounded-lg bg-cyan-700 hover:bg-cyan-600 text-white transition"
+        >
+          Retry
+        </button>
+      </div>
+    );
 
   return (
     <>

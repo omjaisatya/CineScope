@@ -21,7 +21,7 @@ const MovieCard = ({ movie }) => {
 
       <div className="absolute top-3 right-3 flex items-center gap-1 rounded-lg bg-black/60 px-2 py-1 text-xs font-bold text-yellow-400 backdrop-blur-md border border-white/10">
         <span className="text-sm">★</span>
-        {movie.vote_average.toFixed(1)}
+        {movie.vote_average.toFixed(1) || "N/A"}
       </div>
 
       <div className="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-black via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -38,7 +38,7 @@ const MovieCard = ({ movie }) => {
           </Link>
 
           <div className="mt-1 flex items-center justify-between text-xs text-gray-300">
-            <span>{new Date(movie.release_date).getFullYear()}</span>
+            <span>{new Date(movie.release_date).getFullYear() || "N/A"}</span>
             <span className="rounded border border-gray-500 px-1 uppercase">
               {movie.original_language}
             </span>
@@ -51,7 +51,7 @@ const MovieCard = ({ movie }) => {
           {movie.title}
         </h3>
         <p className="text-xs text-gray-400">
-          {new Date(movie.release_date).getFullYear()}
+          {new Date(movie.release_date).getFullYear() || "N/A"}
         </p>
       </div>
     </div>
