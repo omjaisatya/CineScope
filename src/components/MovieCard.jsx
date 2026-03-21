@@ -2,19 +2,27 @@ import { Link } from "react-router-dom";
 import { getImage } from "../utils/getImage";
 
 const MovieCard = ({ movie }) => {
-  const posterUrl = getImage(movie.poster_path, "w342");
+  // const posterUrl = getImage(movie.poster_path, "w342");
+  // const posterUrl = getImage(movie.poster_path, "w185");
+
+  const small = getImage(movie.poster_path, "w185");
+  const medium = getImage(movie.poster_path, "w342");
 
   return (
     <div className="group relative w-full overflow-hidden rounded-xl bg-slate-900 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20">
       <div className="aspect-2/3 w-full overflow-hidden">
         <img
-          // src={posterUrl}
           // testing portformance
-          fetchPriority="high"
-          loading="eager"
+          // fetchPriority="high"
+          loading="lazy"
+          decoding="async"
           // end code
-          src={posterUrl}
+          src={medium}
+          srcSet={`${small} 185w, ${medium} 342w`}
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
           alt={movie.title}
+          width={342}
+          height={513}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
       </div>

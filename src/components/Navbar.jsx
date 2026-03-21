@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { searchMulti } from "../api/movieService";
 import { getImage } from "../utils/getImage";
@@ -134,6 +134,14 @@ const Navbar = () => {
               >
                 People
               </NavLink>
+              <NavLink
+                to="/trending"
+                className={({ isActive }) =>
+                  isActive ? "text-cyan-400" : "hover:text-white transition"
+                }
+              >
+                Trending
+              </NavLink>
             </div>
           </div>
 
@@ -235,6 +243,9 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/people" onClick={closeMenu} className="py-2">
             People
+          </NavLink>
+          <NavLink to="/trending" onClick={closeMenu} className="py-2">
+            Trending
           </NavLink>
         </div>
       )}

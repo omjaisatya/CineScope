@@ -1,10 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-[#0f172a] text-white">
+      <div className="max-w-7xl mx-auto px-6  grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <h2 className="text-2xl font-bold text-white mb-3">
             <span className="text-cyan-400">CINE</span>SCOPE

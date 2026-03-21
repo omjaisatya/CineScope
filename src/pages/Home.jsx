@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import HomePage from "../components/HomePage";
 import {
   getMoviesDiscover,
   getTopRatedMovies,
   getTrendingMovies,
 } from "../api/movieService";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 
 function Home() {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
@@ -44,7 +44,7 @@ function Home() {
     fetchAllData();
   }, []);
 
-  if (loading) return <Loading message="Loading..." />;
+  // if (loading) return <Loading message="Loading..." />;
 
   if (error)
     return (
@@ -65,6 +65,7 @@ function Home() {
         featuredMovie={featuredMovie}
         trendingMovies={trendingMovies}
         topRatedMovies={topRatedMovies}
+        loading={loading}
       />
     </>
   );

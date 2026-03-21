@@ -1,5 +1,3 @@
-import React from "react";
-
 const Loading = ({
   message = "Fetching awesome movies...",
   fullScreen = true,

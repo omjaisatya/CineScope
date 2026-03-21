@@ -9,6 +9,14 @@
       name="description"
       content="Browse trending movies and TV shows powered by TMDB API."
     />
+
+    <!-- this is for improving performance to load before -->
+    <link rel="preconnect" href="https://api.themoviedb.org" />
+    <link rel="preconnect" href="https://image.tmdb.org" crossorigin />
+
+    <link rel="dns-prefetch" href="https://api.themoviedb.org" />
+    <link rel="dns-prefetch" href="https://image.tmdb.org" />
+    <!-- end -->
   </head>
   <body>
     <div id="root"></div>

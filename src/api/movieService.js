@@ -51,7 +51,6 @@ export const getMoviesDiscover = async () => {
 export const getMoviesRecommendations = async (movieId) => {
   try {
     const response = await api.get(`/movie/${movieId}/recommendations`);
-    console.log(response);
     const data = response.data.results;
     return data;
   } catch (error) {

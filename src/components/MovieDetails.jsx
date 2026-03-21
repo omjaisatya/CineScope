@@ -35,7 +35,7 @@ function MovieDetails() {
       <div className="flex flex-col items-center justify-center min-h-screen gap-3">
         <p className="text-red-400">{error}</p>
         <Link to="/" className="text-sm text-cyan-400 hover:underline">
-          ← Back to Home
+          Back to Home
         </Link>
       </div>
     );
@@ -45,7 +45,7 @@ function MovieDetails() {
       <div className="flex flex-col items-center justify-center min-h-screen gap-3">
         <p className="text-slate-400">Movie not found.</p>
         <Link to="/" className="text-sm text-cyan-400 hover:underline">
-          ← Back to Home
+          Back to Home
         </Link>
       </div>
     );
@@ -159,7 +159,7 @@ function MovieDetails() {
                 to="/"
                 className="rounded-full bg-slate-800 hover:bg-slate-700 px-6 py-2.5 text-sm font-bold text-white transition border border-slate-600"
               >
-                ← Back
+                Back to Home
               </Link>
             </div>
           </div>
